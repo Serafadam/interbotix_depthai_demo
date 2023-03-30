@@ -16,7 +16,7 @@ RUN mkdir -p $WS/src
 COPY ./ .$WS/src/interbotix_depthai_demo
 RUN cd .$WS/ && rosdep install --from-paths src --ignore-src  -y
 
-RUN cd .$WS/ && . /opt/ros/${ROS_DISTRO}/setup.sh && colcon build --symlink-install
+RUN cd .$WS/ && . /opt/ros/${ROS_DISTRO}/setup.sh && rm -rf build install log && colcon build --symlink-install
 RUN echo "if [ -f ${WS}/install/setup.zsh ]; then source ${WS}/install/setup.zsh; fi" >> $HOME/.zshrc
 RUN echo 'eval "$(register-python-argcomplete3 ros2)"' >> $HOME/.zshrc
 RUN echo 'eval "$(register-python-argcomplete3 colcon)"' >> $HOME/.zshrc
